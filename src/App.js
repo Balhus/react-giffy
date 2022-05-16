@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ListOfGifs from './components/ListOfGifs';
-import GifDetail from './components/GifDetail'
-import { Link, Route } from 'wouter';
+import SearchResults from './pages/SearchResults/index';
+import Detail from './pages/Detail/index'
+import Home from './pages/Home/index'
+import { Route } from 'wouter';
 
 function App() {
   const [keyword, setKeyword] = useState('sword')
@@ -11,11 +12,9 @@ function App() {
     <div className="App">
       <section className="App-content">
         {/* <button onClick={() => setKeyword('shield')}> Cambiar Keyword</button> */}
-        <Link to='/gif/sword'>Gif de Espadas</Link>
-        <Link to='/gif/shield'>Gif de escudos</Link>
-        <Link to='/gif/panda'>Gif de Pandas</Link>
-        <Route path='/gif/:keyword' component={ListOfGifs} />
-        <Route path='/gif/:keyword/:id' component={GifDetail} />
+        <Route path='/' component={Home} />
+        <Route path='/search/:keyword' component={SearchResults} />
+        <Route path='/gif/:id' component={Detail} />
 
       </section>
     </div>
