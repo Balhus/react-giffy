@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import ListOfGifs from './components/ListOfGifs';
+import GifDetail from './components/GifDetail'
+import { Link, Route } from 'wouter';
 
 function App() {
+  const [keyword, setKeyword] = useState('sword')
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="App-content">
+        {/* <button onClick={() => setKeyword('shield')}> Cambiar Keyword</button> */}
+        <Link to='/gif/sword'>Gif de Espadas</Link>
+        <Link to='/gif/shield'>Gif de escudos</Link>
+        <Link to='/gif/panda'>Gif de Pandas</Link>
+        <Route path='/gif/:keyword' component={ListOfGifs} />
+        <Route path='/gif/:keyword/:id' component={GifDetail} />
+
+      </section>
     </div>
   );
 }
