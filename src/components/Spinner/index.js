@@ -1,3 +1,6 @@
-const Spinner = () => <div className="loader"></div>;
+import React from 'react'
+import './styles.css'
 
-export default Spinner;
+export default function Spinner () {
+  return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+}

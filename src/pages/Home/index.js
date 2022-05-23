@@ -1,38 +1,49 @@
-import { Link, useLocation } from 'wouter';
-import {useState} from 'react'
+import React, {useEffect, useState} from "react"
+import { Link, useLocation } from "wouter"
+import getGifs from '../../services/getGifs'
+import ListOfGifs from '../../components/ListOfGifs'
+import Category from '../../components/Category'
+import {useGifs} from '../../hooks/useGifs'
 
-const POPULAR_GIFS = ['Matrix', 'España', 'Coches', 'Bananas']
+const POPULAR_GIFS = ["Matrix", "Venezuela", "Chile", "Colombia", "Ecuador"]
 
 export default function Home() {
+  const [keyword, setKeyword] = useState('')
+  const [path, pushLocation] = useLocation()
+  const {loading, gifs} = useGifs()
 
-    const [keyword, setKeyword] = useState('')
-    const [path, pushLocation] = useLocation()
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    // navegar a otra ruta
+    pushLocation(`/search/${keyword}`)
+  }
 
-    const handleSubmit = evt => {
-        evt.preventDefault();
-        pushLocation(`/search/${keyword}`)
-        
-    }
-    const handleChange = evt => {
-        setKeyword(evt.target.value);
-    }
+  const handleChange = evt => {
+    setKeyword(evt.target.value)
+  }
 
-    return (
-        <>
-        <h3>Los gifs mas populares</h3>
-        <form onSubmit={handleSubmit} >
-            <input onChange={handleChange} placeholder="Search a gif..." type="text" value={keyword}></input>
-        </form>
-            <ul>
-                {
-                    POPULAR_GIFS.map(gif => (
-                        <li key={gif}>
-                            <Link to={`/search/${gif}`}>Buscar {gif}</Link>
-                        </li>
-                    ))
-                }
-            </ul>
-        </>
-    );
-
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <button>Buscar</button>
+        <input placeholder="Search a gif here..." onChange={handleChange} type='text' value={keyword} />
+      </form>
+      <div className="App-main">
+        <div className="App-results">
+          <h3 className="App-title">Última búsqueda</h3>
+          <ListOfGifs gifs={gifs} />
+        </div>
+        <div className="App-category">
+          <Category
+            name="Categorias populares"
+            options={POPULAR_GIFS}
+          />
+          <Category
+            name="Mascotas"
+            options={['Perros', 'Gatos', 'Hamster']}
+          />
+        </div>
+      </div>
+    </>
+  )
 }

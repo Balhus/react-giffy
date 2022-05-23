@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Gif from "../../components/Gif/index";
-import getGifs from '../../services/getGifs';
-import Spinner from '../../components/Spinner/index'
+import React from 'react'
+import Gif from '../../components/Gif'
+import useGlobalGifs from '../../hooks/useGlobalGifs'
 
-export default function GifDetail({ params }) {
-    const { id } = params
-    const [gifs, setGifs] = useState([])
-    const [loading, setLoading] = useState(false)
-    //Use Effect se ejecuta cada vez que se renderiza, el segundo parametro es para las dependencias y han de ser un array
-    //Si dejamos el array vacio, se ejecutara solo una vez
-    console.log(id)
-    useEffect(() => {
-        setLoading(true)
-        // getGifs({ keyword })
-        //     .then(gifs => {
-        //         setGifs(gifs)
-        setLoading(false)
-        //     })
-    }, []) //Cada vez que cambie la keyword, renderiza de nuevo, porque lo hemos puesto como dependencia
+export default function Detail ({ params }) {
+  const gifs = useGlobalGifs()
 
-    //Poner efecto loading
-    if (loading) return <Spinner />
+  const gif = gifs.find(singleGif =>
+    singleGif.id === params.id
+  )
 
-    return <div>
-        Gif con id: {id}
-    </div>
+  console.log(gif)
+
+  return <>
+      <h3 className="App-title">{gif.title}</h3>
+      <Gif {...gif} />
+    </>
 }
