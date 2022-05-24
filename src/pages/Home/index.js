@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react"
 import { Link, useLocation } from "wouter"
-import getGifs from '../../services/getGifs'
-import ListOfGifs from '../../components/ListOfGifs'
-import Category from '../../components/Category'
-import {useGifs} from '../../hooks/useGifs'
+import getGifs from 'services/getGifs'
+import ListOfGifs from 'components/ListOfGifs'
+import Category from 'components/Category'
+import {useGifs} from 'hooks/useGifs'
+import TreandingSearches from 'components/TrendingSearches'
 
 const POPULAR_GIFS = ["Matrix", "Venezuela", "Chile", "Colombia", "Ecuador"]
 
@@ -34,14 +35,7 @@ export default function Home() {
           <ListOfGifs gifs={gifs} />
         </div>
         <div className="App-category">
-          <Category
-            name="Categorias populares"
-            options={POPULAR_GIFS}
-          />
-          <Category
-            name="Mascotas"
-            options={['Perros', 'Gatos', 'Hamster']}
-          />
+          <TreandingSearches />
         </div>
       </div>
     </>
