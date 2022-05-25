@@ -1,11 +1,14 @@
 import {useState, useEffect, useRef} from 'react'
 
-export default function useNearScreen({distance = '100px'}) {
+export default function useNearScreen({distance = '100px', externalRef, once = true} = {}) {
     const [isNearScreen, setIsNearScreen] = useState(false);
     const fromRef = useRef();
 
     useEffect(() => {
         let observer
+
+        //We store the ref, if its external the external, otherwise we store the one in the hook
+        const element = externalRef ? externalRef.current : fromRef.current;
 
         /**
          * Sets state to true when the element referenced is in the viewport
@@ -13,10 +16,11 @@ export default function useNearScreen({distance = '100px'}) {
          */
         const onChange = (entries, observer) => {
             const el = entries[0];
-            console.log(el.isIntersecting)
             if (el.isIntersecting) { //isIntersecting is the property that tells when the element we are observing is in the viewport
                 setIsNearScreen(true)
-                observer.disconnect(); //When it's true, stop the observer
+                once && observer.disconnect(); //When it's true, stop the observer
+            }else{
+                !once && setIsNearScreen(false)
             }
         }
 
@@ -31,11 +35,11 @@ export default function useNearScreen({distance = '100px'}) {
                 rootMargin: distance // When the distance is 100px from viewport, starts to load
             })
 
-            observer.observe(fromRef.current) //with .current we access the value of the element we have stored in de ref
+            element && observer.observe(element) //with .current we access the value of the element we have stored in de ref
         })
 
         return () => observer && observer.disconnect();
-    }, [])
+    })
 
     return {isNearScreen, fromRef}
 }

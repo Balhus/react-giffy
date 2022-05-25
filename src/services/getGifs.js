@@ -14,7 +14,7 @@ const fromApiResponseToGifs = apiResponse => {
   return []
 }
 
-export default function getGifs ({limit = 25, keyword = 'morty', page = 0} = {}) {
+export default function getGifs ({limit = 10, keyword = 'morty', page = 0} = {}) {
   //Offset es desde que resultado empieza, si es 50, se saltara los 50 primeros resultados
   const apiURL = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${page * limit}&rating=G&lang=en`
 
