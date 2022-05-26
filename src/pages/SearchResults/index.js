@@ -3,12 +3,11 @@ import Spinner from 'components/Spinner'
 import ListOfGifs from 'components/ListOfGifs'
 import { useGifs } from 'hooks/useGifs'
 import useNearScreen from 'hooks/useNearScreen'
-import debounce from 'just-debounce-it'
 import throttle  from 'lodash/throttle'
 
-export default function SearchResults({ params }) {
+function SearchResults({ params }) {
   const { keyword } = params
-  const { loading, gifs, setPage, page } = useGifs({ keyword })
+  const { loading, gifs, setPage} = useGifs({ keyword })
   const externalRef = useRef()
   const { isNearScreen } = useNearScreen({ distance: '500px', externalRef: loading ? null : externalRef, once: false })
 
@@ -19,9 +18,7 @@ export default function SearchResults({ params }) {
   ), [setPage])
 
   useEffect(() => {
-    console.log(isNearScreen)
     if (isNearScreen) debounceHandleNextPage()
-    console.log(page)
   }, [isNearScreen])
 
   return <>
@@ -36,3 +33,5 @@ export default function SearchResults({ params }) {
 
   </>
 }
+
+export default  React.memo(SearchResults)

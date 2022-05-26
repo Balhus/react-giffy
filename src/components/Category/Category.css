@@ -14,7 +14,7 @@
 .Category-link {
     color: white;
     font-size: 1em;
-    padding: .5em;
+    padding: .3em;
     transition: color ease-in .1s;
 }
 
@@ -27,10 +27,10 @@
         display: list-item;
     }
 
-    .Category-list li::before {
-        color: #8c55a2;
-        content: '--';
-        margin-right: .5em;
-        font-size: 1em;
+    .Category-list li {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 0.8em;
     }
 }

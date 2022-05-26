@@ -9,10 +9,13 @@ test('Home working as expected', async () => {
     expect(gifLink).toBeVisible()
 });
 
+//screen coge todo lo que genera el render, y despues se pueden usar los metodos encima de ello.
+//findByRole coge todos los elementos que tengan el rol descrito. Un elemento HTML aunque no le demos un rol, tiene uno por defecto.
 test('search from could be used', async () => {
     render(<App />);
     const input = await screen.findByRole('textbox');
     const button = await screen.findByRole('button')
+
     fireEvent.change(input, { target: { value: 'Matrix' } })
     fireEvent.click(button)
 
