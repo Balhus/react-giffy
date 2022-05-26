@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import useNearScreen from 'hooks/useNearScreen'
-import Spinner from 'components/Spinner'
 import ContentLoader from "react-content-loader"
 
 //React lazy nos sirve para cargar un componente dinamicamente, 
@@ -33,13 +32,13 @@ const MyLoader = (props) => (
 )
 
 export default function LazyTrending() {
-    const { isNearScreen, fromRef } = useNearScreen({ distance: '200px' })
+    const { isNearScreen, fromRef } = useNearScreen({ distance: '100px' })
 
     return <div className="TrendingSearches" ref={fromRef}>
         {/* Como es una promise el React.lazy, es necesario el Suspense, que lo que hace es como resolver esa promise y importar ejecutar lo que este en el lazy 
         El fallback es lo que sale mientras esta resolviendo*/}
         <Suspense fallback={<MyLoader />} >
-            {isNearScreen ? <TrendingSearches /> : <Spinner />}
+            {isNearScreen && <TrendingSearches /> }
         </Suspense>
     </div>
 }
