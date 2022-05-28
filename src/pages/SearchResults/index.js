@@ -4,12 +4,17 @@ import ListOfGifs from 'components/ListOfGifs'
 import { useGifs } from 'hooks/useGifs'
 import useNearScreen from 'hooks/useNearScreen'
 import throttle  from 'lodash/throttle'
+import useSEO from 'hooks/useSEO'
+import Helmet from 'react-helmet'
 
 function SearchResults({ params }) {
   const { keyword } = params
   const { loading, gifs, setPage} = useGifs({ keyword })
   const externalRef = useRef()
   const { isNearScreen } = useNearScreen({ distance: '500px', externalRef: loading ? null : externalRef, once: false })
+  //SEO of the page 
+  const title = gifs ? `${gifs.length} resultados de ${decodeURI(keyword)}`: loading ? 'Cargando...' : '';
+
 
   //useCallback gets a function and mantains it trough renders, so it doesn't get created each time
   //throttle and debounce make that despite how many times you call a function, it will only execute it once while the delay has not been exceeded
@@ -25,6 +30,10 @@ function SearchResults({ params }) {
     {loading
       ? <Spinner />
       : <>
+      <Helmet>
+      <title>{title} | Giffy</title>
+      <meta name="description" content={title}></meta>
+    </Helmet>
         <h3 className="App-title">{decodeURI(keyword)}</h3>
         <ListOfGifs gifs={gifs} />
         <div id="visor" ref={externalRef}></div>

@@ -1,5 +1,7 @@
 .Gif {
+  --gifShadow-size : var(--gridList-gap, 6px);
   margin-bottom: .5em;
+  position: relative;
 }
 
 .Gif-link {
@@ -27,4 +29,16 @@
 
 i {
   font-size: 80px;
+}
+
+.Gif {
+  margin-bottom: 0;
+}
+
+.Gif, .Gif-link {
+  height: 100%;
+}
+.Gif-link img {
+  height: inherit;
+  object-fit: cover;
 }

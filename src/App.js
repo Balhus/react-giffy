@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import './App.css'
 import SearchResults from './pages/SearchResults'
 import Detail from './pages/Detail'
+import Error from './pages/Error'
 import Pepito from './context/StaticContext'
 import { GifsContextProvider } from './context/GifsContext'
 import { Link, Route } from "wouter"
@@ -34,6 +35,10 @@ export default function App() {
               <Route
                 component={Detail}
                 path="/gif/:id"
+              />
+              <Route
+                component={Error}
+                path="/404"
               />
             </GifsContextProvider>
           </section>
