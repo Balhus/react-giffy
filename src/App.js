@@ -31,7 +31,8 @@ export default function App() {
               />
               <Route
                 component={SearchResults}
-                path="/search/:keyword" />
+                // ? makes the parameter optional
+                path="/search/:keyword/:rating?/:lang?" /> 
               <Route
                 component={Detail}
                 path="/gif/:id"
