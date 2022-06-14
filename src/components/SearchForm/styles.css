@@ -1,0 +1,54 @@
+.sf-form{
+    display: flex;
+    margin: 0 auto ;
+    justify-content: center;
+}
+
+.sf-btn {
+    background: #09f;
+    border: 0;
+    color: #fff;
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer
+}
+
+.filter-btn{
+    padding: 8px 14px;
+    background-color: #09f;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+
+}
+
+.filters{
+    padding: 15px 0px;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters select{
+    width: 105px;
+    padding: 5px;
+    margin: 0px 5px;
+    border: 1px solid #09f;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filters .sf-btn-reset{
+    background-color: #09f;
+    border: 0;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}

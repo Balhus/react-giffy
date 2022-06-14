@@ -1,6 +1,9 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useState } from "react"
 import useForm from './hook'
 import { useLocation } from "wouter"
+import {FaFilter} from 'react-icons/fa'
+
+import './styles.css'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r'];
 const LANG = [
@@ -16,7 +19,7 @@ const LANG = [
 
 function SearchForm({ initialKeyword = '', initialRating = 'g', initialLang = 'en' }) {
     const [path, pushLocation] = useLocation()
-
+    const [filtersOn, setFiltersOn] = useState(false);
     const { keyword, rating, lang, updateKeyword, updateRating, updateLang, resetFilter } = useForm(initialKeyword, initialRating, initialLang);
 
     const handleSubmitSearchForm = useCallback((evt) => {
@@ -38,22 +41,31 @@ function SearchForm({ initialKeyword = '', initialRating = 'g', initialLang = 'e
     }
 
     return (
-        <form onSubmit={handleSubmitSearchForm}>
-            <button>Buscar</button>
-            <input placeholder="Search a gif here..." onChange={handleChange} type='text' value={keyword} />
+        <>
+            <form className="sf-form">
+                <button onClick={handleSubmitSearchForm} className="sf-btn">Buscar</button>
+                <input placeholder="Search a gif here..." onChange={handleChange} type='text' value={keyword} />
+                <div className="filter-btn" onClick={() => setFiltersOn(!filtersOn)}><FaFilter /></div>
+            </form>
+            {
+                filtersOn ?
+                    <div className="filters">
+                        <select value={rating} onChange={handleChangeRating}>
+                            <option disabled>Rating type</option>
+                            {RATINGS.map(rating => <option key={rating}>{rating}</option>)}
 
-            <select value={rating} onChange={handleChangeRating}>
-                <option disabled>Rating type</option>
-                {RATINGS.map(rating => <option key={rating}>{rating}</option>)}
+                        </select>
 
-            </select>
+                        <select value={lang} onChange={handleChangeLanguage}>
+                            <option disabled>Language</option>
+                            {LANG.map((lang) => <option key={Object.keys(lang)} value={Object.keys(lang)} >{Object.values(lang)}</option>)}
+                        </select>
 
-            <select value={lang} onChange={handleChangeLanguage}>
-                <option disabled>Language</option>
-                {LANG.map((lang) => <option key={Object.keys(lang)} value={Object.keys(lang)} >{Object.values(lang)}</option>)}
-            </select>
-            <button onClick={resetFilter}>Reset Filter</button>
-        </form>
+                        <button className="sf-btn-reset" onClick={resetFilter}>Reset Filter</button>
+                    </div>
+                    : null
+            }
+        </>
     )
 }
 
