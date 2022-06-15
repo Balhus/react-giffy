@@ -13,8 +13,8 @@
     Con el auto-fit, detecta solo cuando ha de poner mas o menos columnas dependiendo de la anchura. 
     El minmax(vMin, vMax) hace que como minimo tengan 200px y como maximo 1fr, a la que la pantalla sea lo suficientemente grande para que quepa otra columna de 200px la añade.
     */
-    grid-template-columns: repeat(auto-fit, minmax(var(--gridList-column), 1fr));
-    grid-auto-rows: var(--gridList-rows);
+    grid-template-columns: repeat(auto-fit , minmax(var(--gridList-column), 1fr));
+    grid-auto-rows: var(--gridList-rows); 
     grid-template-rows: masonry;
     grid-auto-flow: row dense;
     gap: var(--gridList-gap, 6px);
@@ -33,7 +33,7 @@
 
 @media screen and (min-width: 60rem) {
     :root {
-        --gridList-column: 300px;
-        --gridList-rows: 210px;
+        --gridList-column: 250px;
+        --gridList-rows: 250px;
     }
 }

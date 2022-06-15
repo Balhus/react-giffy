@@ -24,9 +24,9 @@ export default function Fav({ id }) {
         emoji
     ] =
         isFavved ?
-            ['Remove from favorites', <GrClose color='red' />]
+            ['Remove from favorites', <GrClose />]
             :
-            ['Add to favorites', <MdFavorite color='black' />]
+            ['Add to favorites', <MdFavorite className="fav-icon" />]
 
 
     return (

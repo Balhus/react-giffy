@@ -16,14 +16,14 @@ export default function useUser() {
                 setToken(jwt)
             })
             .catch(err => {
-                window.sessionStorage.remove('token');
+                window.sessionStorage.removeItem('token');
                 console.log(err)
                 setState({ loading: false, error: true });
             })
     }, [setToken])
 
     const logout = useCallback(() => {
-        window.sessionStorage.remove('token');
+        window.sessionStorage.removeItem('token');
         setToken(null);
     }, [setToken])
 

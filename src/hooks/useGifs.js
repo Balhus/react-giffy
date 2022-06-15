@@ -3,6 +3,7 @@ import getGifs from '../services/getGifs'
 import GifsContext from '../context/GifsContext'
 
 const INITIAL_PAGE = 0;
+const LIMIT = 10;
 
 export function useGifs ({ keyword, rating, lang } = { keyword: null }) {
   const [loading, setLoading] = useState(false)
@@ -16,9 +17,10 @@ export function useGifs ({ keyword, rating, lang } = { keyword: null }) {
   useEffect(function () {
     setLoading(true)
 
-    getGifs({ keyword: keywordToUse, rating, lang })
-      .then(gifs => {
+    getGifs({ limit: LIMIT, keyword: keywordToUse, rating, lang })
+      .then((gifs) => {
         setGifs(gifs)
+        
         setLoading(false)
         // guardamos la keyword en el localStorage
         localStorage.setItem('lastKeyword', keyword)
@@ -30,8 +32,8 @@ export function useGifs ({ keyword, rating, lang } = { keyword: null }) {
     if(page === INITIAL_PAGE)return
 
     setLoadingNextPage(true)
-    getGifs({keyword: keywordToUse, page, rating, lang})
-    .then(nextGifs => {
+    getGifs({limit: LIMIT, keyword: keywordToUse, page, rating, lang})
+    .then((nextGifs) => {
       //Con una funcion dentro de un state, lo que devuelve en prevGifs es el valor que hay dentro, y podemos usarlo despues
       setGifs(prevGifs => prevGifs.concat(nextGifs))
       setLoadingNextPage(false)
