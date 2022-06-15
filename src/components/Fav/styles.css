@@ -1,0 +1,31 @@
+.fav-btn{
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(204, 204, 204, .4);
+    cursor: pointer;
+}
+
+.fav-btn:hover{
+    background-color: rgb(218, 217, 211);
+    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.fav-btn span{
+    position: absolute;
+    top: 15%;
+    left: 11%;
+    font-size: 22px;
+    color: rgb(37, 37, 37);
+}
+
+.fav-icon:hover{
+    color: rgb(233, 10, 10);
+    transition: all 0.3s ease-in-out;
+    /* transition: color 0.3s ease-in-out; */
+}

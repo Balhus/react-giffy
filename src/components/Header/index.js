@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
+import useUsers from "hooks/useUsers";
 import "./Header.css"
 
 export default function Header() {
-    const [isLogged, setIsLogged] = useState(false)
+    const {isLogged, logout} = useUsers()
+
+    const handleClick = e => {
+        e.preventDefault()
+        logout()
+    }
+
     return (
         <header className="f-header">
             {
@@ -11,7 +18,7 @@ export default function Header() {
                     <Link to="/login">
                         Login
                     </Link>
-                    : <Link to="/login">
+                    : <Link to="#" onClick={handleClick}>
                         Log out
                     </Link>
             }
