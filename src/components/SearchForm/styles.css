@@ -2,6 +2,9 @@
     display: flex;
     margin: 0 auto ;
     justify-content: center;
+    position: sticky;
+    top: 20px;
+    z-index: 2;
 }
 
 .sf-btn {
