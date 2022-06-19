@@ -47,6 +47,14 @@
   width: 100%;
 }
 
+.form-errors, .form small{
+  color: red;
+  font-size: 12px;
+  margin-bottom: 12px;
+  margin-top: -6px;
+}
+
+
 @media screen and (min-width: 640px){
   .App-main{
     flex-direction: initial;

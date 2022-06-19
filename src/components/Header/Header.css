@@ -12,3 +12,7 @@
 .f-header a:hover{
     color: #09f;
 }
+
+.f-header a + a{
+    margin: 0 8px;
+}

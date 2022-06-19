@@ -6,6 +6,7 @@ import SearchResults from 'pages/SearchResults'
 import Detail from 'pages/Detail'
 import Error from 'pages/Error'
 import Login from 'pages/Login'
+import Register from 'pages/Register'
 import { GifsContextProvider } from 'context/GifsContext'
 import { UserContextProvider } from 'context/UserContext'
 import { Link, Route, Switch } from "wouter"
@@ -42,6 +43,10 @@ export default function App() {
                 <Route
                   component={Login}
                   path="/login"
+                />
+                <Route
+                  component={Register}
+                  path="/register"
                 />
                 <Route
                   component={Error}

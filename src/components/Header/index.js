@@ -13,9 +13,14 @@ export default function Header() {
 
     const renderLoginButton = () => {
         return !isLogged ?
-            <Link to="/login">
-                Login
-            </Link>
+            <>
+                <Link to="/login">
+                    Login
+                </Link>
+                <Link to="/register">
+                    Register
+                </Link>
+            </>
             : <Link to="#" onClick={handleClick}>
                 Log out
             </Link>
