@@ -19,7 +19,7 @@ export default function Register() {
     console.log(errors)
 
     if (registered) {
-        return <h4>You have been successfully registered</h4>
+        return <h4>You have been successfully asda sd registered</h4>
     }
 
     return (

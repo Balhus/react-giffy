@@ -1,11 +1,16 @@
 import React from 'react';
 import Login from 'components/Login'
+import Helmet from "react-helmet"
+
 
 export default function LoginPage() {
-    
+
     return (
         <>
-            <h2 style={{textAlign: "center"}}>Login</h2>
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
+            <h2 style={{ textAlign: "center" }}>Enter Login</h2>
             <Login />
         </>
     )
